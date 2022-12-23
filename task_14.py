@@ -92,3 +92,34 @@ first_dct, second_dct = task_two()
 
 print(f'Task two, first dct {first_dct}')
 print(f'Task two, second dct {second_dct}')
+
+
+lst_class = [First, Second, Third, Fourth]
+method_name_one = 'method'
+method_name_two = 'method_two'
+
+
+def task_twoo(first_name, second_name: str):
+    lst_met = []
+    lst_met_for_method_two = []
+    lst_class_for_method_two = lst_class.copy()
+    for i in lst_class:
+        try:
+            i.__dict__[first_name]
+        except KeyError:
+            lst_class.remove(i)
+        else:
+            lst_met.append(i.__dict__[first_name])
+
+        try:
+            i.__dict__[second_name]
+        except KeyError:
+            lst_class_for_method_two.remove(i)
+        else:
+            lst_met_for_method_two.append(i.__dict__[second_name])
+    return dict(zip(lst_obj, lst_met)), dict(zip(lst_class_for_method_two, lst_met_for_method_two))
+
+
+n, b = task_twoo(method_name_one, method_name_two)
+
+print(f'Task 3 {n}\n {b}')
